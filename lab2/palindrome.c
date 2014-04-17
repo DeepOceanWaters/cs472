@@ -1,3 +1,14 @@
+/**
+ * Authors:
+ *      Colin Bradford
+ *      Bryce Holley
+ * Date: 2014-4-11
+ * Description:
+ *      Takes a string from stdin, and then determines whether it is a
+ * palindrome or not. If the length of the string is even, then it asks
+ * the user to input a string with an odd length.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
