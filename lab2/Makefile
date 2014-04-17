@@ -4,6 +4,14 @@ SRC=null
 
 default: all
 
+clean:
+	rm drome
+	rm ${TARGET}.aux
+	rm ${TARGET}.dvi
+	rm ${TARGET}.log
+	rm ${TARGET}.pdf
+	rm ${TARGET}.ps
+
 all: palindrome pdf
 
 palindrome: palindrome.c
