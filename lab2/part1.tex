@@ -1,4 +1,4 @@
-\documentclass[letterpaper,10pt,titlepage]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage{graphicx}                                        
 \usepackage{amssymb}                                         
@@ -23,27 +23,44 @@
 \newcommand{\cred}[1]{{\color{red}#1}}
 \newcommand{\cblue}[1]{{\color{blue}#1}}
 
-\usepackage{hyperref}
-\usepackage{geometry}
+\newcommand{\toc}{\tableofcontents}
 
-\def\name{D. Kevin McGrath}
+%\usepackage{hyperref}
+
+\def\name{Colin Bradford, Bryce Holley}
 
 %pull in the necessary preamble matter for pygments output
 %\input{pygments.tex}
 
 %% The following metadata will show up in the PDF properties
-\hypersetup{
-  colorlinks = true,
-  urlcolor = black,
-  pdfauthor = {\name},
-  pdfkeywords = {cs311 ``operating systems'' files filesystem I/O},
-  pdftitle = {CS 311 Project 1: UNIX File I/O},
-  pdfsubject = {CS 311 Project 1},
-  pdfpagemode = UseNone
-}
+% \hypersetup{
+%   colorlinks = false,
+%   urlcolor = black,
+%   pdfauthor = {\name},
+%   pdfkeywords = {cs311 ``operating systems'' files filesystem I/O},
+%   pdftitle = {CS 311 Project 1: UNIX File I/O},
+%   pdfsubject = {CS 311 Project 1},
+%   pdfpagemode = UseNone
+% }
+
+\parindent = 0.0 in
+\parskip = 0.1 in
 
 \begin{document}
-
+\begin{enumerate}
+    \item Write a simple program to perform: Z = A + B + C – (D × E) 
+    The instructions you may use are ADD, SUB, and MUL. Assume that the data is in registers r0 to r4 (representing A to E) and the result is put in r5. 
+ 
+    Enter your program into the Keil simulator and run it. You can use move instruction to load data into registers. Do you get the expected answer?
+    \item Now assume A, B, C, D and E are 16-bit values in memory. You can load them by using a DCD directive. Remember that you use a label to define the first memory location and you can put successive values on the same line by separating them by commas. However, since each data item needs its own name, you are going to have to use one directive per element; that is:, 
+ 
+A DCD 4 
+B DCD 12 
+C DCD -2 
+ 
+Enter the program, compile (build) it and test it. 
+    \item Write a program that includes deliberate syntax errors. Enter it in the development system, assemble (build) it and then debug it. 
+\end{enumerate}
 %input the pygmentized output of mt19937ar.c, using a (hopefully) unique name
 %this file only exists at compile time. Feel free to change that.
 %\input{__mt19937ar.c.tex}
