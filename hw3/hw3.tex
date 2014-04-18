@@ -63,18 +63,18 @@
         Answer
     \end{enumerate}
     \item[3.3] For each of the following 6-bit operations, calculate the values of the C, Z, V, and N flags.
-    \begin{description}
-        \item[a.] 001011 $+$ 001101
+    \begin{enumerate}
+        \item 001011 $+$ 001101
         \item[b.] 111111 $+$ 000001
-        \item[c.] 000000 $-$ 111111
-        \item[d.] 101101 $+$ 011011
-        \item[e.] 000000 $-$ 000001
-        \item[f.] 111110 $+$ 111111
-    \end{description}
+        \item 000000 $-$ 111111
+        \item 101101 $+$ 011011
+        \item 000000 $-$ 000001
+        \item 111110 $+$ 111111
+    \end{enumerate}
     \item[3.10] Why does the ARM provide a reverse subtract instruction RSB ro,r1,r2 that implements $[r0] = [r2] - [r1]$ when the normal subtraction instruction SUB r0,r2,r1 will do exactly the same job?
     
     Answer
-    \item[3.17] ARM instructions have a $12-bit$ literal. Instead of permitting a word in the range 0 to 2^(12) $-$ 1, the ARM uses an $8-bit$ format for the integer and a $4-bit$ alignment field that allows the integer to be shifted in steps of 2. What are the advantages and disadvantages of this mechanism in comparison with a straight $12-bit$ integer?
+    \item[3.17] ARM instructions have a $12-bit$ literal. Instead of permitting a word in the range 0 to $2^(12) - 1$, the ARM uses an $8-bit$ format for the integer and a $4-bit$ alignment field that allows the integer to be shifted in steps of 2. What are the advantages and disadvantages of this mechanism in comparison with a straight $12-bit$ integer?
     
     Answer
     \item[3.18] Write one or more ARM instructions that will clear bits 20 to 25 inclusive in register r0. All the other bits of r0 should remain unchanged.
