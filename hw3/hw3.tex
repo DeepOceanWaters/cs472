@@ -64,12 +64,48 @@
     \end{enumerate}
     \item[3.3] For each of the following 6-bit operations, calculate the values of the C, Z, V, and N flags.
     \begin{enumerate}
-        \item 001011 $+$ 001101
-        \item 111111 $+$ 000001
-        \item 000000 $-$ 111111
-        \item 101101 $+$ 011011
-        \item 000000 $-$ 000001
-        \item 111110 $+$ 111111
+        \item 001011 $+$ 001101 $=$ 011000
+        \begin{description}
+            \item[C] $=$ 0
+            \item[Z] $=$ 0
+            \item[V] $=$ 0
+            \item[N] $=$ 0
+        \end{description}
+        \item 111111 $+$ 000001 $=$ 1|000000
+        \begin{description}
+            \item[C] $=$ 1
+            \item[Z] $=$ 1
+            \item[V] $=$ 0
+            \item[N] $=$ 0
+        \end{description}
+        \item 000000 $-$ 111111 $=>$ 000000 $+$ 000001 $=$ 000001 
+        \begin{description}
+            \item[C] $=$ 0
+            \item[Z] $=$ 0
+            \item[V] $=$ 0
+            \item[N] $=$ 0
+        \end{description}
+        \item 101101 $+$ 011011 $=$ 1|001000
+        \begin{description}
+            \item[C] $=$ 1
+            \item[Z] $=$ 0
+            \item[V] $=$ 0
+            \item[N] $=$ 0
+        \end{description}
+        \item 000000 $-$ 000001 $=>$ 000000 $+$ 111111 $=$ 111111
+        \begin{description}
+            \item[C] $=$ 0
+            \item[Z] $=$ 0
+            \item[V] $=$ 0
+            \item[N] $=$ 1
+        \end{description}
+        \item 111110 $+$ 111111 $=$ 1|111101
+        \begin{description}
+            \item[C] $=$ 1
+            \item[Z] $=$ 0
+            \item[V] $=$ 0
+            \item[N] $=$ 1
+        \end{description}
     \end{enumerate}
     \item[3.10] Why does the ARM provide a reverse subtract instruction RSB ro,r1,r2 that implements $[r0] = [r2] - [r1]$ when the normal subtraction instruction SUB r0,r2,r1 will do exactly the same job?
     
