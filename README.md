@@ -2,6 +2,11 @@ CS 472: Computer Architecture
 =====
 Oregon State University, Spring 2014
 
+### Format
+#### Homework
+Each user will checkout their own branch for the homework. Use the naming convetion: ```feature/hw#-yourname```. As an example: Michael J Fogg wants to start work on homework 3, so he runs ```git checkout -b feature/hw3-michael```.
+#### Lab
+Use the standard, but affix the feature name with ```lab#```: ```feature/lab#-featurename```.
 ### Git Overview
 #### Basic Common Commands
 ```git clone [repository-url]```, clones a repository.
