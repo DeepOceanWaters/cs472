@@ -6,7 +6,7 @@ Oregon State University, Spring 2014
 #### Homework
 Each user will checkout their own branch for the homework. Use the naming convetion: ```feature/hw#-yourname```. As an example: Michael J Fogg wants to start work on homework 3, so he runs ```git checkout -b feature/hw3-michael```.
 #### Lab
-Use the standard, but affix the feature name with ```lab#```: ```feature/lab#-featurename```.
+Use the standard, but affix the feature name with lab number: ```feature/lab#-featurename```.
 ### Git Overview
 #### Basic Common Commands
 ```git clone [repository-url]```, clones a repository.
