@@ -112,7 +112,7 @@
     Answer
     \item[3.17] ARM instructions have a $12-bit$ literal. Instead of permitting a word in the range 0 to $2^(12) - 1$, the ARM uses an $8-bit$ format for the integer and a $4-bit$ alignment field that allows the integer to be shifted in steps of 2. What are the advantages and disadvantages of this mechanism in comparison with a straight $12-bit$ integer?
     
-    Answer
+    A straight $12-bit$ integer provides the maximum precision of $12-bits$, but only has values in the range of $2^(12) - 1$. The $4-bit$ alignment field allows a precision of $8-bits$, but allows a larger range of values as you multiply the value by a maximum of $2^(2^5 - 1)$ 
     \item[3.18] Write one or more ARM instructions that will clear bits 20 to 25 inclusive in register r0. All the other bits of r0 should remain unchanged.
     
     Answer
