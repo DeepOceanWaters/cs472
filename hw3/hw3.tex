@@ -15,6 +15,8 @@
 \usepackage{enumitem}
 \usepackage{pstricks, pst-node}
 
+\usepackage{listings}
+
 \usepackage{geometry}
 \geometry{textheight=8.5in, textwidth=6in}
 
@@ -112,13 +114,13 @@
     Answer
     \item[3.17] ARM instructions have a $12-bit$ literal. Instead of permitting a word in the range 0 to $2^(12) - 1$, the ARM uses an $8-bit$ format for the integer and a $4-bit$ alignment field that allows the integer to be shifted in steps of 2. What are the advantages and disadvantages of this mechanism in comparison with a straight $12-bit$ integer?
     
-    A straight $12-bit$ integer provides the maximum precision of $12-bits$, but only has values in the range of $2^(12) - 1$. The $4-bit$ alignment field allows a precision of $8-bits$, but allows a larger range of values as you multiply the value by a maximum of $2^(2^5 - 1)$ 
+    A straight $12-bit$ integer provides the maximum precision of $12-bits$, but only has values in the range of $2^(12) - 1$. The $4-bit$ alignment field allows a precision of $8-bits$, but allows a larger range of values as you multiply the value by a maximum of $2^(2^5 - 1)$.
     \item[3.18] Write one or more ARM instructions that will clear bits 20 to 25 inclusive in register r0. All the other bits of r0 should remain unchanged.
     
     Answer
-    \item[3.19] This is a class problem of assembly language programming. Write a sequence of ARM instructions that swap the contents of register r0 and r1 withour using any additional registers or memory storage (that is, you can't move r1 to a temporary location).
+    \item[3.19] This is a class problem of assembly language programming. Write a sequence of ARM instructions that swap the contents of register r0 and r1 without using any additional registers or memory storage (that is, you can't move r1 to a temporary location).
     
-    Answer
+    \lstinputlisting[language={[x86masm]Assembler}, firstline=15, lastline=17]{p3_19.s}
     \item[3.25] What is the binary encoding of the following instructions?
     \begin{enumerate}
         \item STRB r1,[r2]
