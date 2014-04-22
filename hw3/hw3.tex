@@ -31,20 +31,24 @@
 \def\name{Colin Bradford, Bryce Holley}
 
 %pull in the necessary preamble matter for pygments output
-%\input{pygments.tex}
+\input{pygments.tex}
 
 %% The following metadata will show up in the PDF properties
-%\hypersetup{
-%  colorlinks = true,
-%  urlcolor = black,
-%  pdfauthor = {\name},
-%  pdfkeywords = {cs311 ``operating systems'' files filesystem I/O},
-%  pdftitle = {CS 311 Project 1: UNIX File I/O},
-%  pdfsubject = {CS 311 Project 1},
-%  pdfpagemode = UseNone
-%}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {cs472 ``computer architecture'' ISA assembly},
+  pdftitle = {CS 472 Homework 3},
+  pdfsubject = {CS 472 Homework 3},
+  pdfpagemode = UseNone,
+}
 
 \begin{document}
+\title{Homework 3}
+\author{\name}
+\date{\today}
+\maketitle
 \begin{description}
     \item[3.1] Why is the program counter a pointer and not a counter?
     
@@ -53,16 +57,16 @@
     \begin{enumerate}
         \item PC
         
-        Answer
+        Program Counter holds the address of the next instruction to be fetched.
         \item MAR
         
-        Answer
+        Memory Address Register holds an address in memory to either retrieve data from or store data to.
         \item MBR
         
-        Answer
+        Memory Buffer Register holds data either was recieved from or is to be sent to the address in MAR.
         \item IR
         
-        Answer
+        Instruction Register holds the next instruction to be executed. This instruction was fetched via the address in PC.
     \end{enumerate}
     \item[3.3] For each of the following 6-bit operations, calculate the values of the C, Z, V, and N flags.
     \begin{enumerate}
@@ -111,13 +115,15 @@
     \end{enumerate}
     \item[3.10] Why does the ARM provide a reverse subtract instruction RSB ro,r1,r2 that implements $[r0] = [r2] - [r1]$ when the normal subtraction instruction SUB r0,r2,r1 will do exactly the same job?
     
-    Answer
+    The difference lies in the arithmatic placement of the second operand. SUB has fuctionality Rd = Rn - Op2, while RSB has functionality Rd = Op2 - Rn. Due to the flexibility of Op2 there are a wide range of contrasting applications for each instruction, granted slight overlap.
     \item[3.17] ARM instructions have a $12-bit$ literal. Instead of permitting a word in the range 0 to $2^(12) - 1$, the ARM uses an $8-bit$ format for the integer and a $4-bit$ alignment field that allows the integer to be shifted in steps of 2. What are the advantages and disadvantages of this mechanism in comparison with a straight $12-bit$ integer?
     
     A straight $12-bit$ integer provides the maximum precision of $12-bits$, but only has values in the range of $2^(12) - 1$. The $4-bit$ alignment field allows a precision of $8-bits$, but allows a larger range of values as you multiply the value by a maximum of $2^(2^5 - 1)$.
     \item[3.18] Write one or more ARM instructions that will clear bits 20 to 25 inclusive in register r0. All the other bits of r0 should remain unchanged.
     
-    Answer
+    BFC r0, \#20, \#6
+    alternately...
+    BIC r0, r0, \#2623
     \item[3.19] This is a class problem of assembly language programming. Write a sequence of ARM instructions that swap the contents of register r0 and r1 without using any additional registers or memory storage (that is, you can't move r1 to a temporary location).
     
     \lstinputlisting[language={[x86masm]Assembler}, firstline=15, lastline=17]{p3_19.s}
@@ -125,16 +131,16 @@
     \begin{enumerate}
         \item STRB r1,[r2]
         
-        Answer
+        1110 01 0 1 1 1 0 0 0010 0001 000000000000
         \item LDR r3,[r4,r5] !
         
-        Answer
+        1110 01 1 1 1 0 1 1 0100 0011 000000000101
         \item LDR r3,[r4],r5
         
-        Answer
+        1110 01 1 0 1 0 0 1 0100 0011 000000000101
         \item LDR r3,[r4,\#-6] !
         
-        Answer
+        1110 01 0 1 0 0 1 1 0100 0011 000000000110
     \end{enumerate}
     \item[3.39] Write an ARM assembly language program that scans a string terminated by the null byte $0x00$ and copies the string from a source location pointed at by r0 to a destination pointed at by r1.
     
@@ -148,7 +154,10 @@
     \lstinputlisting[language={[x86masm]Assembler}, firstline=8, lastline=19]{p3_51.s}
 \end{description}
 
-%input the pygmentized output of mt19937ar.c, using a (hopefully) unique name
-%this file only exists at compile time. Feel free to change that.
-%\input{__mt19937ar.c.tex}
+
+\newpage
+\section*{References}
+\url{http://www.keil.com/support/man/docs/armasm/armasm_Bgbbfgia.htm}
+
+\url{http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0489c/CIHDGFEG.html}
 \end{document}
