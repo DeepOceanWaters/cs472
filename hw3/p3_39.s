@@ -4,8 +4,9 @@
 ; copies the string from a source location pointed 
 ; at by r0 to a destination pointed at by r1.
 
-COPY_STRING:
-        MOV     [r1], [r0]
-        CMP     [r1], [#0x00]
+COPY_STRING
+        LDR     r2, [r0], #1 
+        STR     r2, [r1], #1
+        CMP     r2, #0
         BNE     COPY_STRING
         
