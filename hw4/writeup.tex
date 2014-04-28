@@ -52,13 +52,19 @@
 \begin{description}
     \item[3.8] What are the relative advantages and disadvantages of general-purpose registers compared to separate address and data registers?
     
-    8086s & for-loop breaks.
+    Separating registers into address and data registers allow instructions to assume more depending on the type of register used in an instruction. A general-purpose register would require more insight as to how it should be treated. Assuming one system had the same number of general-purpose registers as another system had data and address registers combined, then the one with general-purpose registers could hold more addresses or data values in their registers at a time than could the latter.
     \item[3.9] What is a misaligned operand? Why are misaligned operands such a problem in programming?
     
     Answer
     \item[3.24] What is the meaning of each of the P, U, B, W, and L bits in the encoding of an ARM memory reference instruction?
     
-    Answer
+    \begin{description}
+        \item[P] Pointer adjust (Pre/Post$-$increment). 0 $=$ point-index operation: use pointer then adjust. 1 $=$ pre-index operation: adjust pointer then use pointer. TL;DR: determines when to adjust the pointer (before or after using the value of the pointer).
+        \item[U] Pointer direction (Up/Down). 0 $=$ decrement pointer. 1 $=$ increment pointer. TL;DR: Determines how to adjust the pointer (increment or decrement).
+        \item[B] Operand size (Byte/Word). 0 $=$ word access. 1 $=$ byte access. TL;DR: determines how much data should be transfered.
+        \item[W] Pointer update (Write-back). 0 $=$ don't write back adjusted pointer. 1 $=$ write back adjusted pointer. TL;DR: determines if the pointer should be changed.
+        \item[L] Data direction (Load/store). 0 $=$ store in memory. 1 $=$ load into register. TL;DR: determines if data should flow from register to data memory, or from data memory to the register.
+    \end{description}
     \item[3.26] What is the effect of LDR r0, [r5,r6, LSL r2]?
     
     Answer
