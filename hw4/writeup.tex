@@ -50,19 +50,64 @@
 \date{\today}
 \maketitle
 \begin{description}
-    \item[3.8] Title
-    \item[3.9]
-    \item[3.24]
-    \item[3.26]
-    \item[3.30]
-    \item[3.33]
-    \item[3.34]
-    \item[3.36]
-    \item[3.44]
-    \item[3.48]
-    \item[3.54]
-    \item[3.60]
-    \item[3.61]
+    \item[3.8] What are the relative advantages and disadvantages of general-purpose registers compared to separate address and data registers?
+    
+    Answer
+    \item[3.9] What is a misaligned operand? Why are misaligned operands such a problem in programming?
+    
+    Answer
+    \item[3.24] What is the meaning of each of the P, U, B, W, and L bits in the encoding of an ARM memory reference instruction?
+    
+    Answer
+    \item[3.26] What is the effect of LDR r0, [r5,r6, LSL r2]?
+    
+    Answer
+    \item[3.30] What is the meaning of sign-extension in the context of copying data from one location to another?
+    
+    Answer
+    \item[3.33] Most RISC processors do not include a block move instruction. What are the advantages and disadvantages of the ARM's LDM and STM instructions?
+    
+    Answer
+    \item[3.34] What is the effect of executing STMIB r3!,{r0-r2,r4}? Draw a picture of the states of the stack pointed at by r13 before and after this operation.
+    
+    Answer
+    \item[3.36] Without using the ARM's multiplication instruction, write on or more instruction (using ADD, SUB, and shifting) to multiply the following integers.
+    \begin{description}
+        \item[a.] 33
+        
+        Answer
+        \item[b.] 1025
+        
+        Answer
+        \item[c.] 4095
+        
+        Answer
+    \end{description}
+    \item[3.44] What does the following code do?
+    \begin{lstlisting}
+        TEQ     r0, #0
+        RSBMI   r0, r0, #0
+    \end{lstlisting}
+    
+    Answer
+    \item[3.48] What, in the contest of assembly language, is a pseudo-operation?
+    
+    Answer
+    \item[3.54] Explain what this fragment of code does instruction by instruction and what purpose it achieves (assuming that register r0 is the register of interest). Note that the data in r0 must not be 0 on entry.
+    \begin{lstlisting}
+            MOV     r1, #0
+    loop    MOVS    r0, r0, LSL #1
+            ADDCC   r1, r1, #1
+            BCC     loop
+    \end{lstlisting}
+    
+    Answer
+    \item[3.60] A computer has three eight-element vectors in memory, Va, Vb, and Vc. Each element of a vector is a 32-bit word. Write the code to colculate all the elements of Vc if the ith element is given by Vc_i = \frac{1}{2}(Va_i $+$ Vb_i)
+    
+    Answer
+    \item[3.61] Register r15 is the program counter. You can use it with certain instructions such as a MOV (e.g., MOV  pc, r14). However, r15 cannot be used in conjunction with most data processing instructions. Why?
+    
+    Answer
     %\lstinputlisting[language={[x86masm]Assembler}, firstline=8, lastline=19]{p3_51.s}
 \end{description}
 
