@@ -66,13 +66,14 @@
     \end{description}
     \item[3.26] What is the effect of LDR r0, [r5,r6, LSL r2]?
     
-    Answer
+    Load r0 with the value at the address contained in (r5, incremented by the value in (r6, logically shifted left by (the value in r2) bits)).
     \item[3.30] What is the meaning of sign-extension in the context of copying data from one location to another?
     
-    Answer
+    Sign extention is extending leading 0s or 1s for a positive or negative value, respectively. Sign extention can be an issue when moving from a smaller container to a larger one. A value that is initially negative, when moved into a larger container with leading 0s, will appear positive (incorrectly).
     \item[3.33] Most RISC processors do not include a block move instruction. What are the advantages and disadvantages of the ARM's LDM and STM instructions?
     
-    Answer
+    Advantages: Move many values in one command; easy interface with stack; save/restore registers for subroutines;\\
+    Disadvantages: There are many options/variations, so implementation can be difficult;
     \item[3.34] What is the effect of executing STMIB r13!, {r0-r2, r4}? Draw a picture of the states of the stack pointed at by r13 before and after this operation.
     
     The values of r0, r1, r2, and r4 will be stored in r13+1, r13+2, r13+3, and r13+4 respectively (i.e. [r13+1] = [r0], [r13+2] = [r1], [r13+3] = [r2], [r13+4] = [r4]). In addition, r13 will be set to r13+4 after it completes the previous function. Basically, the instruction pushes r0-r2 and r4 onto the stack in that order. 
@@ -105,13 +106,18 @@
     \begin{description}
         \item[a.] 33
         
-        Answer
+        MOV r0, #5 ;arbitrary multiplicand\\
+	ADD r0, r0, r0, LSL #5 ;shifting left 5 is r0*32, add r0 for 33.
         \item[b.] 1025
         
-        Answer
+        MOV r0, #5 ;arbitrary multiplicand\\
+	ADD r0, r0, r0, LSL #10 ;shifting left 10 is r0*1024, add r0 for 1025.
         \item[c.] 4095
         
-        Answer
+        MOV r1, #5 ;arbitrary multiplicand\\
+	MOV r0, #0 ;clear r0\\
+	ADD r0, r0, r1, LSL #12 ;shifting left 12 is r0*4096.
+	SUB r0, r0, r1 ;subtract r1 from the result for 4095.
     \end{description}
     \item[3.44] What does the following code do?
     \begin{lstlisting}
@@ -119,7 +125,7 @@
         RSBMI   r0, r0, #0
     \end{lstlisting}
     
-    Answer
+    if (r0 \!\= #0) \{ negate r0 \}
     \item[3.48] What, in the context of assembly language, is a pseudoinstruction?
     
     A pseudoinstruction is not an actual instruction in the ISA, but rather a composition of actual instructions of the ISA defined as the pseudoinstruction; it's like a function that consists of instructions.
@@ -131,10 +137,26 @@
             BCC     loop
     \end{lstlisting}
     
-    Answer
+    Load r1 with zero\\
+    Double r0 (set carry bit if appropriate)\\
+    Add 1 to r1 if carry bit is clear\\
+    Branch to loop if carry bit is clear\\
+    PURPOSE: At end of execution, r1 will hold the number of leading 0s initially in r1.
     \item[3.60] A computer has three eight-element vectors in memory, Va, Vb, and Vc. Each element of a vector is a 32-bit word. Write the code to colculate all the elements of Vc if the ith element is given by $Vc_i = \frac{1}{2}(Va_i + Vb_i)$
     
-    Answer
+    \begin{lstlisting}
+		ADR r0, D60a		;ptr to Va0
+		ADR r1, D60b		;ptr to Vb0
+		MOV r2, #0x000000F0	;ptr to Vc0
+		MOV r3, #7		;counter
+	LOOP	LDR r4, [r0, r3, LSL #2];load r4 with Vai
+		LDR r5, [r1, r3, LSL #2];load r5 with Vbi
+		ADD r4, r4, r5		;add Vbi to Vai, with carry
+		ASR r4, r4, #1		;divide by 2
+		STR r4, [r2, r3, LSL #2];store result to Vci
+		SUBS r3, #1		;increment counter
+		BPL LOOP		;loop until r3 == 0
+    \end{lstlisting}
     \item[3.61] Register r15 is the program counter. You can use it with certain instructions such as a MOV (e.g., MOV  pc, r14). However, r15 cannot be used in conjunction with most data processing instructions. Why?
     
     Yo momma.
