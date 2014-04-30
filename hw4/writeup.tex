@@ -55,7 +55,7 @@
     Separating registers into address and data registers allow instructions to assume more depending on the type of register used in an instruction. A general-purpose register would require more insight as to how it should be treated. Assuming one system had the same number of general-purpose registers as another system had data and address registers combined, then the one with general-purpose registers could hold more addresses or data values in their registers at a time than could the latter.
     \item[3.9] What is a misaligned operand? Why are misaligned operands such a problem in programming?
     
-    Answer
+    A misaligned operand is offset in an unexpected fashion. It's a problem in programming because you have to check for the misalignment, and deal with it.
     \item[3.24] What is the meaning of each of the P, U, B, W, and L bits in the encoding of an ARM memory reference instruction?
     \begin{description}
         \item[P] Pointer adjust (Pre/Post$-$increment). 0 $=$ point-index operation: use pointer then adjust. 1 $=$ pre-index operation: adjust pointer then use pointer. TL;DR: determines when to adjust the pointer (before or after using the value of the pointer).
@@ -167,7 +167,7 @@
     \end{lstlisting}
     \item[3.61] Register r15 is the program counter. You can use it with certain instructions such as a MOV (e.g., MOV  pc, r14). However, r15 cannot be used in conjunction with most data processing instructions. Why?
     
-    Yo momma.
+    Because ARM processors are pipelined, the next instruction (based on the contents of r15) is fetched before the current instruction is finished running. This means that, if the current instruction was meant to update r15 to point to a new instruction, the wrong instruction would be fetched.
     %\lstinputlisting[language={[x86masm]Assembler}, firstline=8, lastline=19]{p3_51.s}
 \end{description}
 \end{document}
