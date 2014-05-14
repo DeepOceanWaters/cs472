@@ -1,0 +1,174 @@
+\documentclass[letterpaper,10pt,titlepage]{article}
+
+\usepackage{graphicx}                                        
+\usepackage{amssymb}                                         
+\usepackage{amsmath}                                         
+\usepackage{amsthm}                                          
+
+\usepackage{alltt}                                           
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{balance}
+\usepackage[TABBOTCAP, tight]{subfigure}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+
+\usepackage{listings}
+
+\usepackage{geometry}
+\geometry{textheight=8.5in, textwidth=6in}
+
+%random comment
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\def\name{Colin Bradford, Bryce Holley}
+
+%pull in the necessary preamble matter for pygments output
+%\input{pygments.tex}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {cs472 ``computer architecture'' ISA assembly},
+  pdftitle = {CS 472 Homework 4},
+  pdfsubject = {CS 472 Homework 4},
+  pdfpagemode = UseNone,
+}
+
+\begin{document}
+\title{Homework 4}
+\author{\name}
+\date{\today}
+\maketitle
+\begin{description}
+    \item[9.2] Why do computers use cache memory?
+    
+    Fetching data from cache is considerably faster than fetching data from main memory. This speedup is leveraged especially when the processor requests the same data over and over again, such as when looping.
+    \item[9.3] What is the meaning of the following terms:
+    \begin{description}
+        \item[Temporal locality]
+        
+        Addresses which are accessed frequently express temporal locality.
+        \item[Spatial locality]
+        
+        Addresses which are closely grouped in memory express spatial locality.
+    \end{description}
+    \item[9.4] From first principles, derive an expression for the speedup ratio of a memory system with cache (hit ratio: h, main access / cache access: k). Assume that the system is an ideal system and that you don't have to worry about the effect of clock cycle times.
+    
+    \item[9.5] For the following ideal systems, calculate the speedup ratio S.
+    
+    S =  Tm / (h*Tc + (1-h)*Tm) => Calculator
+    \begin{description}
+        \item[] a. Tm = 70ns, Tc = 7ns, h = 0.9
+        
+        5.2632
+        \item[] b. Tm = 60ns, Tc = 3ns, h = 0.9
+        
+        6.8966
+        \item[] c. Tm = 60ns, Tc = 3ns, h = 0.8
+        
+        4.1667
+        \item[] d. Tm = 60ns, Tc = 3ns, h = 0.97
+        
+        12.7389
+    \end{description}
+    \item[9.6] For the following ideal systems, calculate the hit ratio h required to achieve the stated speedup ratio S.
+    \begin{description}
+        \item[] a. Tm = 60ns, Tc = 3ns, S = 1.1
+        \item[] b. Tm = 60ns, Tc = 3ns, S = 2.0
+        \item[] c. Tm = 60ns, Tc = 3ns, S = 5.0
+        \item[] d. Tm = 60ns, Tc = 3ns, S = 15.0
+    \end{description}
+    \item[9.8] For the following systems that use a clocked microprocessor, calculate the maximum speedup ratio you could expect to see as h approaches 100\%.
+    \begin{description}
+        \item[] a. Tcyc = 20ns, Tm = 75ns, Tc = 15ns
+        \item[] b. Tcyc = 20ns, Tm = 75ns, Tc = 25ns
+        \item[] c. Tcyc = 10ns, Tm = 75ns, Tc = 15ns
+    \end{description}
+    \item[9.11] In a direct-mapped cache memory system, what is the meaning of the following?
+    \begin{description}
+        \item[] a. Word
+        	
+        A standard group of bits that are mapped to a single address.
+        \item[] b. Line
+        
+        Memory the size of a word. Multiple words are mapped to a single line. If any of those words are needed in the cache, then that word replaces whatever was in the line.
+        \item[] c. Set
+        
+        A set is a sub-cache which contains an array of lines. However, for direct-mapped cache memory systems there is only one set which is the size of the entire cache.
+    \end{description}
+    \item[9.12] How is data in main store mapped on to each of the following?
+    \begin{description}
+        \item[] a. A direct-mapped cache
+        
+        Line dictates which line in the cache is checked. Set is matched to the tag for that line in the cache. If the tag matches, the requested word is returned to the CPU.
+        \item[] b. A fully associative cache
+        
+        Addresses are mapped solely by a key and word pair. All keys in the cache are matched in parallel. If a key is matched, the requested word is returned to the CPU.
+        \item[] a. A set-associative cache
+        
+        Very similar to direct-mapped, but multiple separate direct-mapped caches are checked for matching tags at the requested line in parallel. If one or more of the caches hit, the requested word is returned to the CPU.
+    \end{description}
+    \item[9.17] What is cache coherency?
+    
+    The consistency of shared memory. It ensures that multiple caches all with the same memory update in a timely manner after that memory changes. When data in memory or a cache is updated, all other data in memory or caches that have not yet been updated are considered to contain stale data.
+    \item[9.22] Why is it harder to design a data cache than an instruction cache?
+
+    The instructions are not changed during execution. Thus, there is a finite set of values to populate the instruction cache with (limited to the number of unique instructions in the running program), while the data cache could have any possible value in range.
+    \item[9.23] When a CPU writes to the cache, both the item in the cache and the corresponding item in the memory must be updated, if data is not in the cache, it must be fetched from memory and loaded in the cache. If T1 is the time taken to reload the cache on a miss, show that the effective average access time of the memory system is given by
+	
+    Tave = hTc + (1-h)Tm + (1-h)T1.
+    
+    Ans
+    \item[9.26] A system has a level 1 cache and a level 2 cache. The hit rate of the level 1 cache is 90\%, and the hit rate of the level 2 cache is 80\%. An access to level 1 cache requires one cycle, an access to level 2 cache requires four cycles, and an access to main memory requires 50 cycles. What is the average access time?
+    
+    
+    \item[9.28] In the context of multilevel caches, what is the difference between a local miss rate and a global miss rate?
+    
+    
+    \item[9.35] A 64-bit processor has a 8-MB, four-way set-associative cache with 32-byte lines. How is the address arranged in terms of set, line, and offset bits?
+    
+    
+    \item[9.41] What are the fundamental differences between cache memory (as found in a CPU) and cache memory found in a hard disk drive.
+    
+    Disk cache, a.k.a. disk buffer, is not used in the same manner as cache memory in the CPU. Instead, it is used for write sequencing and read prefetching.
+    \item[9.42]What are the differences between write-back and write-through caches, and what are the implications for system performance?
+    
+    Write-back cache technique writes the L1 cache to main memory only when absolutely necessary. In contrast, the write-through cache technique writes to both the L1 cache and main memory simultaneously. Write-back allows for faster performance with an increased risk if the system crashes in comparison to the write-through technique.
+    \item[9.43] A computer with a 32-bit address architecture has a memory management system with single-level 4-KB page tables. How much memory space must be devoted to the page tables?
+    
+    
+    \item[9.45] What is the average number of cycles per instruction?
+    
+    
+    \item[9.46]Consider the following code that accesses three values in memory scalar integers x and s, and an integer vector y[i]. what is the memory latency in clock cycles for a trip round the loop (after the first iteration)? Assume that the array is not cached and each new access to the array results in a miss.
+The system has both L1 and L2 caches. The access time of the L1 cache is two cycles, the access time of the L2 cache is 6 cycles and main memory has an access time of 50 cycles. In this case all memory and cache memory access take place in parallel.
+	\begin{lstlisting}
+    for (i = 0; i < 100; i++) {
+	    x = y[i];
+	    s = s+x;
+	}
+    \end{lstlisting}
+    
+    
+    \item[9.57]A computer with a 24-bit address bus has a main memory of size 16 MB and a cache size of 64 KB. The wordlength is two bytes.
+    \begin{description}
+	    \item[] a. What is the address format for a direct-mapped cache with a line size of 32 words?
+	    \item[] b. What is the address format for a fully associative cache with a line size of 32 words?
+	    \item[] a. What is the address format for a four-way set-associative cache with a line size of 16 words?
+    \end{description}
+    %\lstinputlisting[language={[x86masm]Assembler}, firstline=8, lastline=19]{p3_51.s}
+\end{description}
+
+\newpage
+\section*{References}
+\end{document}
